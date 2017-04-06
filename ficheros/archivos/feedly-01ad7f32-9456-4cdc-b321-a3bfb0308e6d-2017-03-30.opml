@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<opml version="1.0">
+    <head>
+        <title>Rafa subscriptions in feedly Cloud</title>
+    </head>
+    <body>
+        <outline type="rss" text="Xataka" title="Xataka" xmlUrl="http://feeds.weblogssl.com/xataka2" htmlUrl="https://www.xataka.com"/>
+        <outline type="rss" text="Xataka Android" title="Xataka Android" xmlUrl="http://www.xatakandroid.com/index.xml" htmlUrl="https://www.xatakandroid.com"/>
+        <outline type="rss" text="Xataka Ciencia" title="Xataka Ciencia" xmlUrl="http://www.genciencia.com/atom.xml" htmlUrl="https://www.xatakaciencia.com"/>
+        <outline type="rss" text="Xataka Móvil" title="Xataka Móvil" xmlUrl="http://www.xatakamovil.com/atom.xml" htmlUrl="https://www.xatakamovil.com"/>
+        <outline type="rss" text="Xataka Foto" title="Xataka Foto" xmlUrl="http://feeds.weblogssl.com/xatakafoto" htmlUrl="https://www.xatakafoto.com"/>
+        <outline type="rss" text="Xataka On" title="Xataka On" xmlUrl="http://www.xatakaon.com/index.xml" htmlUrl="http://www.xatakaon.com"/>
+        <outline type="rss" text="Xataka Smart Home" title="Xataka Smart Home" xmlUrl="http://www.xatakahome.com/index.xml" htmlUrl="https://www.xatakahome.com"/>
+        <outline type="rss" text="Xataka Windows" title="Xataka Windows" xmlUrl="http://www.xatakawindows.com/index.xml" htmlUrl="https://www.xatakawindows.com"/>
+        <outline type="rss" text="El Chapuzas Informático" title="El Chapuzas Informático" xmlUrl="http://elchapuzasinformatico.com/feed/" htmlUrl="https://elchapuzasinformatico.com"/>
+        <outline type="rss" text="Applesfera" title="Applesfera" xmlUrl="http://feeds.weblogssl.com/applesfera" htmlUrl="https://www.applesfera.com"/>
+        <outline type="rss" text="Vidaextra" title="Vidaextra" xmlUrl="http://feeds.weblogssl.com/vidaextra" htmlUrl="https://www.vidaextra.com"/>
+        <outline type="rss" text="Genbeta" title="Genbeta" xmlUrl="http://www.genbeta.com/index.xml" htmlUrl="https://www.genbeta.com"/>
+        <outline type="rss" text="Genbeta Dev" title="Genbeta Dev" xmlUrl="http://www.genbetadev.com/index.xml" htmlUrl="https://www.genbetadev.com"/>
+        <outline type="rss" text="Dekazeta" title="Dekazeta" xmlUrl="http://feeds.feedburner.com/dekazeta" htmlUrl="http://www.dekazeta.net"/>
+        <outline type="rss" text="El Androide Libre" title="El Androide Libre" xmlUrl="http://www.elandroidelibre.com/feed/" htmlUrl="https://elandroidelibre.elespanol.com"/>
+        <outline type="rss" text="ComputerHoy.com" title="ComputerHoy.com" xmlUrl="http://computerhoy.com/rss.xml" htmlUrl="http://computerhoy.com/rss.xml"/>
+        <outline type="rss" text="Hipertextual" title="Hipertextual" xmlUrl="http://bitelia.com/feed/" htmlUrl="https://hipertextual.com/archivo"/>
+        <outline type="rss" text="Engadget en español - RSS Feed" title="Engadget en español - RSS Feed" xmlUrl="http://es.engadget.com/rss.xml" htmlUrl="http://es.engadget.com/rss.xml"/>
+        <outline type="rss" text="MuyInteresante.es" title="MuyInteresante.es" xmlUrl="http://feeds.feedburner.com/Muyinteresantees" htmlUrl="http://www.muyinteresante.es"/>
+        <outline type="rss" text="Andro4all" title="Andro4all" xmlUrl="http://feeds.feedburner.com/Andro4allcom" htmlUrl="https://andro4all.com"/>
+        <outline type="rss" text="Xataka Ciencia" title="Xataka Ciencia" xmlUrl="http://www.xatakaciencia.com/index.xml" htmlUrl="https://www.xatakaciencia.com"/>
+        <outline type="rss" text="Magazine - moviles" title="Magazine - moviles" xmlUrl="http://www.xataka.com/categoria/moviles/rss2.xml" htmlUrl="https://www.xataka.com"/>
+        <outline type="rss" text="Ubunlog" title="Ubunlog" xmlUrl="http://feeds2.feedburner.com/Ubunlog" htmlUrl="https://ubunlog.com"/>
+        <outline type="rss" text="Magnet" title="Magnet" xmlUrl="http://magnet.xataka.com/index.xml" htmlUrl="https://magnet.xataka.com"/>
+        <outline type="rss" text="Reviews4all" title="Reviews4all" xmlUrl="https://www.youtube.com/feeds/videos.xml?channel_id=UClMQm06QTkqvs1ffcdTJXRw" htmlUrl="http://www.youtube.com/channel/UClMQm06QTkqvs1ffcdTJXRw"/>
+    </body>
+</opml>
