@@ -3,13 +3,17 @@ pass='pi'
 
 cd scripts/torrent/
 
-COMANDO="ls *.torrent"
 
-if $COMANDO
+if (ls *.torrent)
     then
-    transmission-remote -n $user:$pass -a *.torrent
-    rm *.torrent
-    echo "Torrent añadido"
+      if (transmission-remote -n $user:$pass -a *.torrent)
+        then
+          rm *.torrent
+          echo "Torrent añadido"
+      else
+          echo "El torrent no se ha podido añadir, transmission no se encuentra activo"
+          rm *.torrent
+      fi
 else
     rm *.*
     echo "El fichero que has mandado no es un torrent"

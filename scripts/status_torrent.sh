@@ -1,4 +1,9 @@
 user='pi'
 pass='pi'
 
-transmission-remote -n $user:$pass -l
+if (transmission-remote -n $user:$pass -l)
+    then
+    echo " "
+else
+    echo "Transmission no se encuentra activo actualmente"
+fi
