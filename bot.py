@@ -14,7 +14,7 @@ admin = credenciales.admin
 #knownUsers = [] #todo: save these in a file,
 userStep = {}   #so they won't reset every time the bot restarts
 
-################################MENUS DEL BOT##############################
+################################MENUS DEL BOT###########################
 def menu_principal():
 	markup = types.ReplyKeyboardMarkup()
 	itembtna = types.KeyboardButton('Sistema')
@@ -111,21 +111,21 @@ def next_step_handler(uid):
 		userStep[uid] = 0
 	return userStep[uid]
 
-##############################################################################
-######################### FUNCIONES DEL BOT ##################################
-##############################################################################
+########################################################################
+######################### FUNCIONES DEL BOT ############################
+########################################################################
 
-#################### Funciones del sistema ###################################
+#################### Funciones del sistema #############################
 
-
+##Funcion para mostrar la informacion del dispositivo###################
 @bot.message_handler(func=lambda message: message.text == "Información del dispositivo")
 def command_sistema(m):
 	all_data="Nombre: " + str(platform.uname()[1]) + "\n" + "Sistema Operativo: " + str(platform.uname()[0]) + "\n" + "Arquitectura: " + str(platform.machine()) + "\n" + "CPU: " + str(platform.processor()) + "\n" + "Distribucion: " + str(platform.linux_distribution()) + "\n" + "Kernel: " + str(platform.release()) + "\n"
 	bot.send_message(admin, all_data)
+########################################################################
 
 
-
-
+##Funcion para mostrar el consumo de RAM################################
 @bot.message_handler(func=lambda message: message.text == "Consumo de RAM")
 def command_ram(m):
 	os.system("sh scripts/ram.sh >> temp.txt")
@@ -134,10 +134,10 @@ def command_ram(m):
 	fichero.close()
 	os.system("rm temp.txt")
 	bot.send_message(admin, contenido)
+########################################################################
 
 
-
-
+##Funcion para mostrar la temperatura de la CPU#########################
 @bot.message_handler(func=lambda message: message.text == "Temperatura de la CPU")
 def command_cpu(m):
 	os.system("sh scripts/cpu.sh >> temp.txt")
@@ -146,10 +146,10 @@ def command_cpu(m):
 	fichero.close()
 	os.system("rm temp.txt")
 	bot.send_message(admin, contenido)
+########################################################################
 
 
-
-
+##Funcion para mostrar los procesos del sistema#########################
 @bot.message_handler(func=lambda message: message.text == "Procesos")
 def command_cpu(m):
 	os.system("ps -a | awk {'print $1, $4'} >> temp.txt")
@@ -158,38 +158,37 @@ def command_cpu(m):
 	fichero.close()
 	os.system("rm temp.txt")
 	bot.send_message(admin, contenido)
+########################################################################
 
 
 
-
-
+##Funcion para reiniciar el sistema#####################################
 @bot.message_handler(func=lambda message: message.text == "Reiniciar")
 def command_reboot(m):
 	bot.send_message("Reiniciando dispositivo...")
 	os.system("reboot")
+########################################################################
 
 
-
-
+##Funcion para apagar el dispositivo####################################
 @bot.message_handler(func=lambda message: message.text == "Apagar")
 def command_shutdown(m):
 	os.system("shutdown -P 00")
 	bot.send_message("Apagando dispositivo...")
-
+########################################################################
 
 
 
 ######################Funciones de archivos###############################
 
-
-
+##Funciones para recoger los arhchivos enviados por el usuario##########
 @bot.message_handler(func=lambda message: message.text == "Enviar")
 def command_descargar(m):
 	cid = m.chat.id
-	if cid == admin:
+	if cid == admin: #Comprobamos que el usuario es el admin
 		bot.send_chat_action(cid, 'typing')
 		menu_cancelar()
-		userStep[cid] = 'enviar_archivo'
+		userStep[cid] = 'enviar_torrent' #Llamamos a la siguiente funcion
 
 	else:
 		bot.send_chat_action(cid, 'typing')
@@ -197,32 +196,27 @@ def command_descargar(m):
 
 
 
-
 @bot.message_handler(func=lambda msg: next_step_handler(msg.chat.id) == 'enviar_archivo', content_types=['document'])
 def step_descargar(m):
-	cid = m.chat.id
-	userStep[cid] = 0
-	name = m.document.file_name
-	info = bot.get_file(m.document.file_id)
-	bot.send_chat_action(cid, 'typing')
-	bot.send_message(cid, "Descargando: " + name)
+	name = m.document.file_name ##Recogemos el nombre del fichero
+	info = bot.get_file(m.document.file_id) ##Comenzamos la descarga del fichero
+	bot.send_chat_action(admin, 'typing')
+	bot.send_message(admin, "Descargando: " + name)
 	downloaded_file = bot.download_file(info.file_path)
-	with open("ficheros/"+name, 'wb') as new_file:
+	with open("ficheros/"+name, 'wb') as new_file: #escribimos el fichero que hemos descargado en la ruta
 		new_file.write(downloaded_file)
-	bot.send_chat_action(cid, 'typing')
-	#proc=Popen("", shell=True, stdout=PIPE, )
-	bot.send_message(cid, "Fichero recibido")
-	os.system("sh scripts/clasificar.sh >> temp.txt")
+	bot.send_chat_action(admin, 'typing')
+	bot.send_message(admin, "Fichero recibido") #enviamos un mensaje de que el fichero ha sido recibido
+	os.system("sh scripts/clasificar.sh >> temp.txt") #llamamos al script para que añada el torrent a transmission si es posible.
 	fichero = open('temp.txt')
-	contenido=fichero.read()
+	contenido=fichero.read() #guardamos la salida del script en la variable contenido
 	fichero.close()
 	os.system("rm temp.txt")
-	bot.send_message(admin, contenido)
+	bot.send_message(admin, contenido) #enviamos la salida del script al usuario
 	menu_principal()
+########################################################################
 
-
-
-
+##Funciones para cancelar orden#########################################
 @bot.message_handler(func=lambda message: message.text == "Cancelar")
 def command_cancelar(m):
 	cid = m.chat.id
@@ -237,7 +231,7 @@ def command_cancelar(m):
 	else:
 		bot.send_chat_action(cid, 'typing')
 		bot.send_message(cid, "No hay nada que cancelar")
-
+########################################################################
 
 
 
@@ -282,7 +276,7 @@ def step_descargar(m):
 	menu_principal()
 ########################################################################
 
-
+##Funcion para comprobar las descargas de transmission##################
 @bot.message_handler(func=lambda message: message.text == "Estado actual de las descargas")
 def command_cpu(m):
 	os.system("sh scripts/status_torrent.sh >> temp.txt")
@@ -291,8 +285,9 @@ def command_cpu(m):
 	fichero.close()
 	os.system("rm temp.txt")
 	bot.send_message(admin, contenido)
+########################################################################
 
-
+##Funcion para iniciar las descargas de transmission####################
 @bot.message_handler(func=lambda message: message.text == "Iniciar todos los torrents")
 def command_cpu(m):
 	os.system("sh scripts/start_all_torrent.sh >> temp.txt")
@@ -301,8 +296,9 @@ def command_cpu(m):
 	fichero.close()
 	os.system("rm temp.txt")
 	bot.send_message(admin, contenido)
+########################################################################
 
-
+##Funcion para parar las descargas de transmission######################
 @bot.message_handler(func=lambda message: message.text == "Parar todos los torrents")
 def command_cpu(m):
 	os.system("sh scripts/stop_all_torrent.sh >> temp.txt")
@@ -311,6 +307,6 @@ def command_cpu(m):
 	fichero.close()
 	os.system("rm temp.txt")
 	bot.send_message(admin, contenido)
-
+########################################################################
 
 bot.polling()
