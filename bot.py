@@ -179,7 +179,7 @@ def command_shutdown(m):
 
 
 
-######################Funciones de archivos###############################
+######################Funciones de archivos#############################
 
 ##Funciones para recoger los arhchivos enviados por el usuario##########
 @bot.message_handler(func=lambda message: message.text == "Enviar")
